@@ -1,0 +1,37 @@
+server:
+  port: 9091
+spring:
+  h2:
+    console:
+     enabled: true
+     path: /h2
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: 
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  application:
+    name: ORDER-SERVICE
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+payment:
+  service-url: http://localhost:9092/payment/doPayment
+order:
+  application:
+    display-name: orderservice
+    version: 1.0.0
+    component-display-name: order-service API
+    team-mail: venkatagangdhar@gmail.com
+springdoc:
+  swagger-ui:
+    enabled: true
+    swagger-ui:
+      path: /swagger-ui.html
