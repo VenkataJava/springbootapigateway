@@ -17,7 +17,6 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
 @Configuration
-@EnableResourceServer
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
@@ -30,7 +29,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Autowired
 	AuthenticationManager authenticationManager;
 	
-	 @Autowired
+	@Autowired
 	private UserDetailsService userDetailsService;
 
 	@Override
@@ -45,13 +44,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		clients.inMemory()
 			.withClient("client")
 			.secret(encoder.encode("secret"))
-			.authorizedGrantTypes("password","authorization_code")
+			.authorizedGrantTypes("password")
 			.scopes("all");
 	}
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("tokenStore::--- " + tokenStore.toString());
 		endpoints.tokenStore(tokenStore)
 		.authenticationManager(authenticationManager)
 		.userDetailsService(userDetailsService);
