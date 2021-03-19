@@ -1,0 +1,9 @@
+Postman Params:
+username:venkata
+password:12345
+grant_type:password
+
+Authorization :
+  Basic Auth: username - client
+              password - secret
+              
